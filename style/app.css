@@ -1,0 +1,18 @@
+#app{
+    width: 100%;
+    height: 100vh;
+    padding: 0rem 3rem;
+    background-image:linear-gradient(70.18deg, #0d162e 23.21%, rgba(13,22,46,0.0001) 70.69%),url(https://assets.b9.com.br/wp-content/uploads/2021/06/LUCA-ONLINE-USE-v298_10_pub.pub16.608-2500x1351.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
