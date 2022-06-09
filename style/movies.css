@@ -68,3 +68,7 @@
     font-weight: 500;
     line-height: 1.25rem;
 }
+.title-princi{
+    display: flex;
+    gap: 10px;
+}
