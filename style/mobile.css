@@ -1,0 +1,23 @@
+@media screen and (max-width:730px) {
+    .movies ul{ 
+        width: 200px;
+        height: 460px;   
+    }
+    .movies ul::-webkit-scrollbar{
+        width: 0;
+    }
+    .movies ul li{
+        width: 200px;
+        height: 100px;
+    }
+    .movie p{
+        font-size: 10px;
+        font-weight: 400;
+        width: 100%;
+        max-width: 200px;
+        height: 150px;
+        overflow: auto;
+    }
+    
+
+}
