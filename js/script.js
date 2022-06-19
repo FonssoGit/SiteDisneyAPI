@@ -1,91 +1,88 @@
-const API_KEY = `363c5d1969f7741089a136755e8cf14b`
-const INITIAL_MOVIE = ''
-const BUTON_PLAY = ``
-const LIST_MOVIES = [
-    `tt3065204`,
+const menuIconClick = document.querySelector('.menu_icon span')
+
+function togleMenu(){
+    const main = document.querySelector('main')
+    const nav = document.querySelector('nav')
+    nav.classList.toggle('active')
+    main.classList.toggle('active')
+}
+menuIconClick.addEventListener('click',togleMenu)
+
+
+
+const keyApi = `363c5d1969f7741089a136755e8cf14b`
+let listMovie = [
+    `tt3480822`,
     `tt5109280`,
     `tt2948372`,
     `tt2380307`,
-    `tt0910970`,
+    `tt0910970`
 ]
-
-function getURLmovie(movieId){
-    return `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
+//`https://api.themoviedb.org/3/movie/${filmeID}?api_key=<<${keyApi}>>&language=pt-BR`
+function getURLmovie(filmeID){
+    return `https://api.themoviedb.org/3/movie/${filmeID}?api_key=${keyApi}&language=pt-BR`
 }
-
-//Script Principal renderizar filme inicial 
-
-
-const movielista = document.getElementById('movie_list')
-
-
-function setFeatureMovie(movieId){
-    fetch(getURLmovie(movieId))
-.then( response => response.json())
-.then( data => {
+function SetFeatureApi(filmeID){
+    fetch(getURLmovie(filmeID))
+    .then(response => response.json()).then( data => {
     console.log(data)
-    const title = document.querySelector('.movie h1')
-    title.innerHTML = data.title
+    const imgContainer = document.querySelector('.container')
+    const imagem = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
 
-    const descricao = document.querySelector('.movie p')
-    descricao.innerHTML = data.overview
+    const avaliacao = document.querySelector('.rating p')
+    avaliacao.innerHTML = `${data.vote_average}`
 
-    const rating = document.querySelector('.rating strong')
-    rating.innerHTML = data.vote_average
+    const genero = document.querySelector('.date_genre h4')
+    genero.innerHTML = `${data.genres[0].name}  ${data.genres[1].name }`
 
-    const infoDate = document.querySelector('.movie span')
-    infoDate.innerHTML = data.release_date
+    const date = document.querySelector('.date_genre span')
+    date.innerHTML = `${data.release_date}`
 
-    const infoGenero = document.querySelector('.movie h4')
-    infoGenero.innerHTML = data.genres[0].name + ' - Movie'
 
-    const app = document.getElementById('app')
+    const titulo = document.querySelector('.title h1')
+    titulo.innerHTML = `${data.original_title}`
 
-    const image = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+    const descricao = document.querySelector('.title p')
+    descricao.innerHTML = `${data.overview}`
 
-    app.style.backgroundImage = `linear-gradient(90.18deg, #0d162ec2 26.21%, rgba(13,22,46,0.0001) 90.69%),url(${image})`
-})
+    imgContainer.style.backgroundImage = `linear-gradient(
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.3)),url(${imagem})`
+    })
 }
 
-function creteButoCLickMovie(movieId){
-    const button = document.createElement('button')
-    button.setAttribute('onclick',`setFeatureMovie('${movieId}')`)
-    button.innerHTML = `<i class="bi bi-play-circle-fill"></i>`
-    return button
-
+function creatBtnOnclick(filmeID) {
+    const btnOnclick = document.createElement('button')
+    btnOnclick.setAttribute('onclick',`SetFeatureApi('${filmeID}')`)
+    btnOnclick.innerHTML = `<i class="bi bi-play-fill"></i>`
+    return btnOnclick
 }
-function createMovie(movieId){
-    console.log('createMovie id',movieId)
-    fetch(getURLmovie(movieId))
+
+
+const ul = document.querySelector('ul')
+function criarFilme(filmeID){
+    fetch(getURLmovie(filmeID))
     .then( response => response.json())
     .then( data => {
-        const movie = document.createElement('li')
-        const genrre = `<span>${data.genres[0].name}</span>`
-        const title = `<strong>${data.title}</strong>`
-
-        const image = `https://image.tmdb.org/t/p/original/${data.backdrop_path}`
-        movie.innerHTML = genrre + title 
-        movie.appendChild(creteButoCLickMovie(movieId))
-        movie.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.03),rgba(0,0,0,0.3)),url(${image})`
-
-        movielista.appendChild(movie)
-
-        //<li>
-        //<span>Genero</span>
-        //<strong>Sprite Untamed</strong>
-        //<button type="button">
-        //<i class="bi bi-play-circle-fill"></i>
-        //</button>
-        //</li>
-    })
+        const filme = document.createElement('li')
+        const title = `<h3>${data.original_title}</h3>`
+        const genero = `<h4>${data.genres[0].name}</h4>`
+        const imagem = `https://image.tmdb.org/t/p/w500/${data.backdrop_path}`
         
+        filme.innerHTML = title + genero
+        filme.style.backgroundImage = `linear-gradient(
+            to left bottom,
+            rgba(0,0,0,0.3),
+            rgba(0,0,0,0.3)),url(${imagem}`
+
+        filme.appendChild(creatBtnOnclick(filmeID))
+        ul.appendChild(filme)
+        filme.appendChild(creatBtnOnclick(filmeID))
+    })
 }
 
-function loadListMovies(){
-    LIST_MOVIES.map(createMovie)
+function recarregarlista(){
+    listMovie.map(criarFilme)
 }
-
-loadListMovies()
-
-setFeatureMovie(LIST_MOVIES[0])
-
+recarregarlista()
+SetFeatureApi(listMovie[0])
