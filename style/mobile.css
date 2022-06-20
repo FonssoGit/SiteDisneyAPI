@@ -1,25 +1,99 @@
+@media screen and (max-width:910px) {
+    main .right_movies{
+        position: absolute;
+        display: flex;
+        justify-content: end;
+        right: 0;
+        z-index: 10000;
+        width: 100%;
+    }
+}
+@media screen and (max-width:760px) {
+    main .title h1{
+        font-size: 30px;
+        width: 100%;
+    }
+    main .title p{
+        width: 100%;
+        max-width: 100%;
+        font-size: 13px;
+    }
+    main .date_genre span{
+        font-weight: 200;
+        font-size: 12px;
+    }
+    .date_genre h4{
+        font-weight: 500;
+        font-size: 12px;
+    }
+}
 @media screen and (max-width:700px) {
     nav{
         padding: 0.6rem 2rem;
     }
-}
-@media screen and (max-width:600px) {
     
 }
-@media screen and (max-width:0px) {
-    body main{
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+@media screen and (max-width:600px) {
     main .left_description{
         width: 100%;
-        height: 50%;
-        border: 1px solid white;
+        height: 100%;
     }
-    main .right_movies{
+    main .title h1{
+        font-size: 30px;
         width: 100%;
-        height: 50%;
-        border: 1px solid white;
+    }
+    main .title p{
+        width: 100%;
+        max-width: 100%;
+        font-size: 13px;
+    }
+}
+@media screen and (max-width:400px) {
+    main .left_description{
+        width: 100%;
+        height: 100%;
+    }
+    main .title h1{
+        font-size: 30px;
+        width: 100%;
+    }
+    main .title p{
+        width: 100%;
+        max-width: 100%;
+        font-size: 10px;
+    }
+    main .contain_description button{
+        background: linear-gradient(
+            to left,
+            rgb(0, 153, 255),
+            rgb(0, 140, 255));
+            border: none;
+            width: 150px;
+            height: 40px;
+            border-radius: 30px;
+            margin-top: 20px;
+            color: white;
+            font-weight: 600;
+            text-transform: capitalize;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+    }
+}
+@media screen and (max-width:350px) {
+    main .left_description{
+        width: 100%;
+        height: 100%;
+    }
+    main .title h1{
+        font-size: 20px;
+        width: 100%;
+    }
+    main .title p{
+        width: 100%;
+        max-width: 100%;
+        font-size: 9px;
     }
 }
