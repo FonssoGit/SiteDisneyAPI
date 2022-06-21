@@ -10,6 +10,7 @@
     height: 460px;
     overflow: auto;
     position: relative;
+
 }
 .movies ul::-webkit-scrollbar{
     width: 0.2rem;
